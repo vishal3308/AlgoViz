@@ -2,14 +2,8 @@ server/node_modules
 server/Passport/keys.js
 client/node_modules
 
-client/.pnp
-client/.pnp.js
-# testing
-client/coverage
-client/
 # production
 client/build
-client/
 # misc
 client/.DS_Store
 client/.env.local

@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+/* ==========Login and Continue button style Overwrite========= */
+.css-1pp0got-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root{
+  padding: 4px 10px !important;
+}
+.css-1ph36rw-MuiButtonBase-root-MuiButton-root{
+  padding: 4px 10px !important;
+  margin-left: 10px !important;
+}
