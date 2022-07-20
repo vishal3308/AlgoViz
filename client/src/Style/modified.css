@@ -27,10 +27,31 @@
     color: black !important;
 }
 
-
-
-
-
+.aboutusheading{
+	text-align: center;
+    border-bottom: 2px solid grey;
+    display: inline-block;
+	color: #5e6c6c;
+	padding: 2px;
+	font-family: 'PT Serif', serif;
+}
+.previousque{
+	margin: 10px;
+}
+.previousque p{
+	border: 1px solid grey;
+    padding: 5px 20px;
+    margin: 0 10px;
+    border-radius: 5px;
+	display: inline;
+	font-size: 18px;
+}
+.answer p{
+	border: 1px solid grey;
+    padding: 5px;
+    border-radius: 10px;
+	color: #2230d5;
+}
 
 /* ====================================Login and Sign up=================== */
 body {

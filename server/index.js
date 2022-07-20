@@ -4,6 +4,7 @@ const passport = require('passport')
 const cors = require('cors')
 const jwt = require('jsonwebtoken');
 const User = require('./Database/Userschema');
+const Que_ans = require('./Database/Questionschema');
 const jwtkey = 'e-commerce';
 const PORT = process.env.PORT || 4001;
 const PortalURL = 'http://localhost:3001';
@@ -34,6 +35,7 @@ const verifyingJWT = (req, resp, next) => {
     }
     else {
       req.body.userid = valid.user._id;
+      req.body.name = valid.user.name;
       next();
     }
   })
@@ -61,10 +63,7 @@ app.get('/auth/google/callback',
 app.get('/login/failure', (req, resp) => {
   resp.status(401).send('Login failed')
 })
-// app.get('/login/success',(req,resp)=>{
 
-//     resp.status(200).send({'Login session':req.session,'User':req.isAuthenticated()})
-// })
 
 // ================================== Sign up====================
 app.post('/signup', async (req, resp) => {
@@ -72,7 +71,6 @@ app.post('/signup', async (req, resp) => {
   await data.save().then((result) => {
     let user = result.toObject();
     delete user.password;
-    delete user._id;
     jwt.sign({ user }, jwtkey, { expiresIn: Math.floor(Date.now() / 1000) + (60 * 60) }, (err, token) => {
       if (err) {
         resp.status(401).send({ Error: 'Something went wrong, please try again.' })
@@ -83,10 +81,6 @@ app.post('/signup', async (req, resp) => {
     .catch(err => {
       resp.status(403).send({ Error: "Email id is already exist, please login." })
     });
-
-
-
-
 })
 // ================================== Login====================
 app.post('/login', async (req, resp) => {
@@ -95,7 +89,7 @@ app.post('/login', async (req, resp) => {
   const method = await User.findOne({ email: Email }, { registration_type: 1 });
   if (method) {
     if (method.registration_type == 'Local') {
-      const user = await User.findOne({ $and: [{ email: Email }, { password: Password }] }, { _id: 0, name: 1, email: 1, avatar: 1 });
+      const user = await User.findOne({ $and: [{ email: Email }, { password: Password }] }, { name: 1, email: 1, avatar: 1 });
       if (user) {
         jwt.sign({ user }, jwtkey, { expiresIn: Math.floor(Date.now() / 1000) + (60 * 60) }, (err, token) => {
           if (err) {
@@ -113,8 +107,77 @@ app.post('/login', async (req, resp) => {
       resp.status(401).send({ Error: "Please choose 'Continue with Google option' because you already register with Google Account" })
     }
   }
-  else{
+  else {
     resp.status(401).send({ Error: 'You are a new Member, please Sign Up.' })
+
+  }
+})
+// ============================ Question Post/ Ask a question======================
+app.post('/postquestion', verifyingJWT, async (req, resp) => {
+  const que = new Que_ans(req.body);
+  await que.save().then((result) => {
+    resp.send({ Message: "Successfully posted" })
+  }).catch(err => {
+    resp.send({Error:"Failed to post Question"})
+  })
+})
+
+//======================== Geeting all Questions===========================
+app.post('/allquestion',async(req,resp)=>{
+  const pagename=req.body.pagename;
+  await Que_ans.find({pagename:pagename})
+  .then((result)=>{
+    resp.send({data:result})
+  }).catch(err=>{
+    resp.send({Error:err.message})
+  })
+}) 
+
+// ==================== Reply / Answer post=============================
+app.post('/postreply', verifyingJWT, async (req, resp) => {
+  const queid = req.body.queid;
+  const userid = req.body.userid;
+  const username = req.body.name;
+  const answer = req.body.reply;
+  console.log(answer,username)
+  if(answer && username){
+  await Que_ans.findOne({ _id: queid }, { _id: 0, answer: 1 })
+    .then(async (result) => {
+      let oldreply = result.answer;
+      if (oldreply) {
+        let index = Object.keys(oldreply).length + 1;
+        oldreply[index] = {
+          ans_userid: userid,
+          ans_name: username,
+          reply: answer
+        }
+      }
+      else {
+        oldreply = {
+          1: {
+            ans_userid: userid,
+            ans_name: username,
+            reply: answer
+          }
+        }
+      }
+       await Que_ans.updateOne({ _id: queid }, { $set: { answer: oldreply } })
+        .then(result => {
+          if (result.acknowledged) {
+            resp.send({ Message: "Successfull" })
+          }
+          else {
+            resp.send({ Error: "Failed to post" })
+          }
+        }).catch(err => {
+          resp.status(401).send({ Error: "Error will posting reply" });
+        })
+    }).catch(err => {
+      resp.status(401).send({ Error: "Something went wrong, please try again" });
+    });
+  }
+  else{
+  resp.send({Error:"Please fill the answer."})
 
   }
 })
