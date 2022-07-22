@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Cells from "./cells";
 import Menu from "./menu";
+import QueReply from "../Questions/QueReply";
 
 class Queen extends Component {
     state={
@@ -35,6 +36,7 @@ class Queen extends Component {
                         board={this.state.board}
                     />
                 </div>
+                <QueReply pagename={"nqueen"}/>
             </div>
         );
     }

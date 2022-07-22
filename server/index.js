@@ -125,7 +125,7 @@ app.post('/postquestion', verifyingJWT, async (req, resp) => {
 //======================== Geeting all Questions===========================
 app.post('/allquestion',async(req,resp)=>{
   const pagename=req.body.pagename;
-  await Que_ans.find({pagename:pagename})
+  await Que_ans.find({pagename:pagename}).sort({_id:-1})
   .then((result)=>{
     resp.send({data:result})
   }).catch(err=>{
@@ -139,7 +139,6 @@ app.post('/postreply', verifyingJWT, async (req, resp) => {
   const userid = req.body.userid;
   const username = req.body.name;
   const answer = req.body.reply;
-  console.log(answer,username)
   if(answer && username){
   await Que_ans.findOne({ _id: queid }, { _id: 0, answer: 1 })
     .then(async (result) => {
@@ -164,7 +163,7 @@ app.post('/postreply', verifyingJWT, async (req, resp) => {
        await Que_ans.updateOne({ _id: queid }, { $set: { answer: oldreply } })
         .then(result => {
           if (result.acknowledged) {
-            resp.send({ Message: "Successfull" })
+            resp.send({ Message: "Successfully posted Reply" })
           }
           else {
             resp.send({ Error: "Failed to post" })

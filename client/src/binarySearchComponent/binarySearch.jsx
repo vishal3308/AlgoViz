@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import EntryPoint from "./entryPoint";
 import Search from "./search";
+import QueReply from "../Questions/QueReply";
 
 class BinarySearch extends Component {
     state={
@@ -11,9 +12,8 @@ class BinarySearch extends Component {
     }
     render() {
         return (
-            <div>
-                
-            <center>
+            <div>   
+            <center style={{marginBottom:"20px"}}>
                 {!this.state.isRunning &&
                 <EntryPoint
                     startGame={this.handleStartGame}
@@ -31,6 +31,7 @@ class BinarySearch extends Component {
                 />
                 }
             </center>
+            <QueReply pagename={"binarysearch"}/>
             </div>
         );
     }

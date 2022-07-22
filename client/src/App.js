@@ -8,7 +8,6 @@ import About from './homeComponents/about';
 import Login from './homeComponents/Login';
 import Signup from './homeComponents/Signup';
 import Authenticate from './Authenticate';
-import QueReply from './Questions/QueReply';
 // import Seive from "./primeComponents/seive";
 // import towerOfHanoi from "./towerOfHanoiComponents/util/towerApp";
 import Sort from "./sortComponents/sort";
@@ -37,7 +36,6 @@ export const Url = createContext();
                     <Route path='/login' element={<Login/>}/>
                     <Route path='/signup' element={<Signup/>}/>
                     <Route path='/about' element={<About/>}/>
-                    <Route path='/ask' element={<QueReply/>}/>
                     <Route path='/' element={<Home/>}/>
                 </Routes>
          </BrowserRouter>

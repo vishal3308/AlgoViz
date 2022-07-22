@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import MyTimer from "./timer";
 import Canvas from "./canvas";
 import Menu from "./menu";
+import QueReply from "../Questions/QueReply";
 class ConvexHull extends Component {
     state={
         dots:[],
@@ -23,7 +24,8 @@ class ConvexHull extends Component {
     }
     render() {
         return (
-            <div>
+            <React.Fragment>
+            <div className='convexcontainer' style={{height:"500px",padding:"10px"}}>
                 <Menu
                     onRefresh={this.handleRefreshDots}
                     onVisualize={this.handleVisualize}
@@ -31,7 +33,7 @@ class ConvexHull extends Component {
                     onChangeValues={this.handleValueIncease}
                 />
                 <Canvas
-                    width={this.state.width}
+                    sx={{width:'90vw'}}
                     height={this.state.height}
                     dots={this.state.dots}
                     onTurnOff={this.handleTurnOff}
@@ -39,6 +41,8 @@ class ConvexHull extends Component {
                     speed={this.state.speed}
                 />
             </div>
+                <QueReply pagename={"convexhull"}/>
+            </React.Fragment>
         );
     }
     handleValueIncease = (value) => {

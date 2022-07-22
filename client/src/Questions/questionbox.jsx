@@ -20,6 +20,7 @@ export default function Questionbox(props) {
   const [loading, setLoading] = useState(false);
   const [question, setquestion] = useState("");
   const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
   function handleClick() {
     if (!question) {
       return setError("Please write the Question before ask");
@@ -44,12 +45,20 @@ export default function Questionbox(props) {
               setError(res.Error)
           }
           else {
-              console.log(res.Message)
+            setSuccess(res.Message)
+            setquestion('');
           }
       }).catch((err) => {
           setError("Something went Wrong, please try again.")
       }).finally(() => {
-          setLoading(false)
+          setLoading(false);
+          new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+              setSuccess(false);
+              setError(false);
+              resolve();
+            },10000)
+          })
       })
 
   }
@@ -83,11 +92,10 @@ export default function Questionbox(props) {
             </LoadingButton>
           </Link>
         }
-        {error &&
-          <Alert severity="error" >{error}</Alert>
-        }
+        {error && <Alert severity="error" >{error}</Alert>}
+        {success && <Alert severity="success" >{success}</Alert>}
       </Box>
-      <PreviousQue pagename={props.pagename}/>
+      <PreviousQue pagename={props.pagename} successpost={success}/>
     </>
   )
 }

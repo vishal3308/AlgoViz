@@ -5,6 +5,7 @@ import {dijkstra,getNodesInShortestPathOrder} from "../algorithms/dijkstra";
 import {getMaze} from "../algorithms/recursiveMaze";
 import {bfsdfs} from "../algorithms/bfs";
 import {randomMaze} from "../algorithms/randomMaze";
+import QueReply from "../Questions/QueReply";
 
 class Pathfinder extends Component {
     constructor() {
@@ -25,8 +26,8 @@ class Pathfinder extends Component {
     componentDidMount() {
         const width = window.innerWidth;
         const height = window.innerHeight;
-        const row = Math.max(Math.floor(height/25)-7,10);
-        const col = Math.floor(width/25);
+        const row = Math.max(Math.floor(height/30)-1,10);
+        const col = Math.floor(width/30);
         const startNode = {
             row:4,
             col:4
@@ -64,6 +65,7 @@ class Pathfinder extends Component {
                         onMouseUp={this.handleMouseUp}
                     />
                 </div>
+                <QueReply pagename={"pathfinder"}/>
             </Fragment>
         );
     }

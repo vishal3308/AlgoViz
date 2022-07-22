@@ -4,6 +4,7 @@ import mergeSort from '../algorithms/mergeSort';
 import heapSort from "../algorithms/heapSort";
 import {quickSortRecursive} from "../algorithms/quickSortRecursive";
 import Menu from "./menu";
+import QueReply from "../Questions/QueReply";
 
 class RecursiveSort extends Component {
     state = {
@@ -46,6 +47,7 @@ class RecursiveSort extends Component {
                     />
 
                 </div>
+                <QueReply pagename={"recursivesort"}/>
             </React.Fragment>
         );
     }
