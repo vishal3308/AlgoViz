@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes,Route } from 'react-router-dom';
 import './Style/modified.css';
-import Pathfinder from "./pathfinderComponents/pathfinder";
+import PathfindingVisualizer from './PathfindingVisualizer/PathfindingVisualizer';
 import Home from "./homeComponents/home";
 import Navbar from './homeComponents/Navbar';
 import About from './homeComponents/about';
@@ -24,7 +24,7 @@ export const Url = createContext();
             <BrowserRouter>
             <Navbar/>
                 <Routes>
-                <Route path='/pathfinder' element={<Pathfinder/>}/>
+                <Route path='/pathfinder' element={<PathfindingVisualizer/>}/>
                     {/* <Route path='/prime' component={Seive}/> */}
                     <Route path='/sort' element={<Sort/>}/>
                     <Route path='/nqueen' element={<Queen/>}/>

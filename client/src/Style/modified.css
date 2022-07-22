@@ -52,7 +52,13 @@
     border-radius: 10px;
 	color: #2230d5;
 }
-
+.pathfinderbutton{
+padding: 16px;
+background-color: rgb(211, 211, 212);
+}
+.pathfinderbutton button{
+	margin: 2px 5px;
+}
 /* ====================================Login and Sign up=================== */
 body {
 	margin: 0;

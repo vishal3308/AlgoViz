@@ -13,7 +13,7 @@ class ConvexHull extends Component {
         isRunning:false,
         speed:100,
         number:50
-
+        
     }
     constructor() {
         super();
@@ -21,6 +21,8 @@ class ConvexHull extends Component {
     }
     componentDidMount() {
         this.setState({width:window.innerWidth,height:window.innerHeight-100});
+        // =======Refreshing the COnvex hull for firstTime=============
+        this.handleRefreshDots();
     }
     render() {
         return (

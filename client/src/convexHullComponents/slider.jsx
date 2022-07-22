@@ -24,7 +24,7 @@ export default function DiscreteSlider(props) {
         props.onChange(num);
     }
     return (
-        <div className={classes.root+" ml-2 mr-2"}>
+        <div className={classes.root+" ml-2 mr-2"} style={{margin:"0 5px"}}>
             <Typography id="discrete-slider" gutterBottom>
                 {props.title}
             </Typography>
@@ -38,7 +38,6 @@ export default function DiscreteSlider(props) {
                 marks={props.marks}
                 min={props.min}
                 max={props.max}
-                valueLabelDisplay="on"
                 disabled={props.isDisabled}
             />
         </div>

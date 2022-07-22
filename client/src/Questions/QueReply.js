@@ -5,7 +5,7 @@ import Questionbox from './questionbox';
 export default function QueReply(props) {
     
     return (
-        <Box sx={{ backgroundColor: '#d3d3d4', fontFamily: "'PT Serif', serif",p:1,paddingLeft:"20px",m:1 }}>
+        <Box sx={{ backgroundColor: '#d3d3d4', fontFamily: "'PT Serif', serif",p:1,paddingLeft:"20px",m:1}}>
             <Questionbox pagename={props.pagename}/>
         </Box>
     )
