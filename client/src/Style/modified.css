@@ -59,6 +59,13 @@ background-color: rgb(211, 211, 212);
 .pathfinderbutton button{
 	margin: 2px 5px;
 }
+
+.PrequeError{
+	position: fixed;
+	top: 5px;
+	right: 40%;
+}
+
 /* ====================================Login and Sign up=================== */
 body {
 	margin: 0;

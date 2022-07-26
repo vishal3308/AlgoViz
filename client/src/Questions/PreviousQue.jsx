@@ -13,22 +13,32 @@ export default function PreviousQue(props) {
     const Auth = localStorage.getItem('AlgoViz_token');
     const url = useContext(Url);
     const { pagename } = props;
-    const Name=localStorage.getItem('AlgoViz_name');
+    const Name = localStorage.getItem('AlgoViz_name');
     const [loading, setLoading] = useState(false);
     const [QuestionList, setQuestion] = useState([]);
     const [error, setError] = useState(false);
     const [Reply, setReply] = useState('');
-  const [success, setSuccess] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [targetReplyEvent, settargetReplyEvent] = useState('');
+
+    const ReplyChange = (e) => {
+        setReply(e.target.value);
+        settargetReplyEvent(e);
+    }
 
     const handlereply = (Queid) => {
         if (!Reply) {
-            return setError("Please write the Reply before post");
+            setError("Please write the Reply before post");
+            return setTimeout(() => {
+                setSuccess(false);
+                setError(false);
+            }, 5000)
         }
         setLoading(true);
         setError(false)
         // ========================= API Calling for Reply Question===================
         const data = {
-            queid:Queid,
+            queid: Queid,
             reply: Reply,
             name: Name
         }
@@ -47,6 +57,7 @@ export default function PreviousQue(props) {
                 else {
                     setSuccess(res.Message);
                     setReply('');
+                    targetReplyEvent.target.value="";
                 }
             }).catch((err) => {
                 setError("Something went Wrong, please try again.")
@@ -85,27 +96,26 @@ export default function PreviousQue(props) {
                 setError("Something went Wrong, please try again.")
             })
 
-    }, [success,props.successpost])
+    }, [success, props.successpost])
     return (
         <>
             <h3>Previous Questions</h3>
-            {error && <Alert severity="error" >{error}</Alert>}
-            {success && <Alert severity="success" >{success}</Alert>}
-            {QuestionList.map((item) => (
-                <Box sx={{ border: '1px solid grey', p: 1, borderRadius: "10px", m: 1 }} >
+            {error && <Alert severity="error" className='PrequeError'>{error}</Alert>}
+            {success && <Alert severity="success" className='PrequeError'>{success}</Alert>}
+            {QuestionList.map((item, index) => (
+                <Box sx={{ border: '1px solid grey', p: 1, borderRadius: "10px", m: 1 }} key={index}>
                     <Chip
                         avatar={<Avatar src="/broken-image.jpg" />}
                         label={item.name}
                         variant="outlined"
                     />
                     <div className="previousque">
-                        <p key={item._id}>{item.question}</p>
+                        <p>{item.question}</p>
                     </div>
                     <TextareaAutosize
                         aria-label="minimum height"
                         minRows={1}
-                        value={Reply}
-                        onChange={(e) => setReply(e.target.value)}
+                        onChange={(e) => ReplyChange(e)}
                         placeholder="Please write your Answer"
                         style={{ width: "80%", borderRadius: "5px" }}
                     />
@@ -115,7 +125,7 @@ export default function PreviousQue(props) {
                                 sx={{ ml: 1 }}
                                 size="small"
                                 color="success"
-                                onClick={()=>handlereply(item._id)}
+                                onClick={() => handlereply(item._id)}
                                 endIcon={<SendIcon />}
                                 loading={loading}
                                 loadingPosition="end"
@@ -133,7 +143,7 @@ export default function PreviousQue(props) {
                     </Box>
                     <div className='answer'>
                         <h4>Answer</h4>
-                        {item.answer && Object.values(item.answer).map((ans,val) => (
+                        {item.answer && Object.values(item.answer).map((ans, val) => (
                             <p key={val}>
                                 <Chip
                                     avatar={<Avatar src="/broken-image.jpg" />}
