@@ -1,4 +1,5 @@
 import React, { Component,useState,useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Node from './Node/Node';
 import { dijkstra } from '../Pathfinderalgo/dijkstra';
 import { AStar } from '../Pathfinderalgo/aStar';
@@ -12,7 +13,7 @@ import './PathfindingVisualizer.css';
 const Tutorial=() =>{
   const [page, setPage] = useState(1);
   const [Tutdata, setTutdata] = useState({})
-  const totalpage = 3; // === Please write total tutorial page use for this algorithm
+  const totalpage = 3; // === Please write total tutorial page used for this algorithm
   const Next = () => {
     if(page == totalpage) Skip();
     else if (page < totalpage) setPage(page + 1)
@@ -32,6 +33,7 @@ const Tutorial=() =>{
                   h6: 'This short tutorial will walk you through all of the features of this application.',
                   p: 'If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!',
                   other:"Hi I am Vishal",
+                  link:<Link to='www.google.com'>Video</Link>,
               })
 
               break;
@@ -65,6 +67,7 @@ const Tutorial=() =>{
               <h6>{Tutdata.h6}</h6>
               <p>{Tutdata.p}</p>
               <p><b>{Tutdata.other}</b></p>
+              <p>{Tutdata.link}</p>
               <div id="tutorialCounter">{page}/{totalpage}</div>
               <button id="nextButton" className="btn btn-default navbar-btn" type="button" onClick={Next}>{page==totalpage?'FINISH':'NEXT'}</button>
               <button id="previousButton" className="btn btn-default navbar-btn" type="button" onClick={Previous}>Previous</button>

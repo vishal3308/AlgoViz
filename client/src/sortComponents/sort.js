@@ -25,7 +25,7 @@ const Tutorial=() =>{
         switch (page) {
             case 1:
                 setTutdata({
-                    h3: 'Welcome to Pathfinding Visualizer!',
+                    h3: 'Welcome to Sorting Visualizer!',
                     h6: 'This short tutorial will walk you through all of the features of this application.',
                     p: 'If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!',
                     other:"Hi I am Vishal",
