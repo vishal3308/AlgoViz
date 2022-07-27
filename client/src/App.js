@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes,Route } from 'react-router-dom';
 import './Style/modified.css';
-import PathfindingVisualizer from './PathfindingVisualizer/PathfindingVisualizer';
 import Home from "./homeComponents/home";
 import Navbar from './homeComponents/Navbar';
 import About from './homeComponents/about';
@@ -10,6 +9,7 @@ import Signup from './homeComponents/Signup';
 import Authenticate from './Authenticate';
 // import Seive from "./primeComponents/seive";
 // import towerOfHanoi from "./towerOfHanoiComponents/util/towerApp";
+import PathfindingVisualizer from './PathfindingVisualizer/PathfindingVisualizer';
 import Sort from "./sortComponents/sort";
 import Queen from "./queenComponents/queen";
 import ConvexHull from "./convexHullComponents/convexHull";

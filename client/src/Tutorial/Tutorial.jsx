@@ -1,16 +1,13 @@
-import React, { Component,useState,useEffect } from 'react';
-import EntryPoint from "./entryPoint";
-import Search from "./search";
-import QueReply from "../Questions/QueReply";
+import React from 'react'
+import { useEffect } from 'react';
+import { useState } from 'react';
 
-// ======================Tutorial Component===================================
-const Tutorial=() =>{
+export default function Tutorial() {
     const [page, setPage] = useState(1);
     const [Tutdata, setTutdata] = useState({})
-    const totalpage = 3; // === Please write total tutorial page use for this algorithm
+    const totalpage = 5; // === Please write total tutorial page use for this algorithm
     const Next = () => {
-      if(page == totalpage) Skip();
-      else if (page < totalpage) setPage(page + 1)
+        if (page < totalpage) setPage(page + 1);
     }
     const Previous = () => {
         if (page > 1) setPage(page - 1);
@@ -28,7 +25,7 @@ const Tutorial=() =>{
                     p: 'If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!',
                     other:"Hi I am Vishal",
                 })
-  
+
                 break;
             case 2:
                 setTutdata({
@@ -52,76 +49,19 @@ const Tutorial=() =>{
                 })
         }
     }, [page])
-  
+
     return (
         <>
             <div id="tutorial">
                 <h3>{Tutdata.h3}</h3>
                 <h6>{Tutdata.h6}</h6>
                 <p>{Tutdata.p}</p>
-                <p><b>{Tutdata.other}</b></p>
+                <p>{Tutdata.other}</p>
                 <div id="tutorialCounter">{page}/{totalpage}</div>
-                <button id="nextButton" className="btn btn-default navbar-btn" type="button" onClick={Next}>{page==totalpage?'FINISH':'NEXT'}</button>
+                <button id="nextButton" className="btn btn-default navbar-btn" type="button" onClick={Next}>Next</button>
                 <button id="previousButton" className="btn btn-default navbar-btn" type="button" onClick={Previous}>Previous</button>
                 <button id="skipButton" className="btn btn-default navbar-btn" type="button" onClick={Skip}>Skip Tutorial</button>
             </div>
         </>
     )
-  }
-class BinarySearch extends Component {
-    state={
-        upper:100,
-        lower:0,
-        max:100,
-        isRunning:false
-    }
-    render() {
-        return (
-            <div>
-                <Tutorial/>   
-            <center style={{marginBottom:"20px"}}>
-                {!this.state.isRunning &&
-                <EntryPoint
-                    startGame={this.handleStartGame}
-                    upper={this.state.upper}
-                    setUpper={this.handleSetUpper}
-                /> }
-                {this.state.isRunning &&
-                <Search
-                    yesButton={this.handleYes}
-                    noButton={this.handleNo}
-                    upper={this.state.upper}
-                    lower={this.state.lower}
-                    max={this.state.max}
-                    onRestart={this.handleRestart}
-                />
-                }
-            </center>
-            <QueReply pagename={"binarysearch"}/>
-            </div>
-        );
-    }
-    handleStartGame = () =>{
-        this.setState({isRunning:true});
-    }
-    handleRestart = () =>{
-        this.setState({isRunning:false,upper:100,lower:0});
-    }
-    handleYes = () =>{
-        const mid = Math.floor( (this.state.upper+this.state.lower)/2);
-        this.setState({lower:mid+1});
-    }
-    handleNo = () =>{
-        const mid = Math.floor( (this.state.upper+this.state.lower)/2);
-        this.setState({upper:mid});
-    }
-    handleSetUpper = (up) =>{
-        let val = parseInt(up);
-        if( val<=0 ){
-            val = 100;
-        }
-        this.setState({upper:val,max:val});
-    }
 }
-
-export default BinarySearch;

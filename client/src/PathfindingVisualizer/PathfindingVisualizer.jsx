@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component,useState,useEffect } from 'react';
 import Node from './Node/Node';
 import { dijkstra } from '../Pathfinderalgo/dijkstra';
 import { AStar } from '../Pathfinderalgo/aStar';
@@ -8,6 +8,71 @@ import { Box } from '@mui/material';
 import QueReply from "../Questions/QueReply";
 import './PathfindingVisualizer.css';
 
+// ======================Tutorial Component===================================
+const Tutorial=() =>{
+  const [page, setPage] = useState(1);
+  const [Tutdata, setTutdata] = useState({})
+  const totalpage = 3; // === Please write total tutorial page use for this algorithm
+  const Next = () => {
+    if(page == totalpage) Skip();
+    else if (page < totalpage) setPage(page + 1)
+  }
+  const Previous = () => {
+      if (page > 1) setPage(page - 1);
+  }
+  const Skip = () => {
+      document.getElementById("tutorial").style.display = "none";
+  }
+  // 
+  useEffect(() => {
+      switch (page) {
+          case 1:
+              setTutdata({
+                  h3: 'Welcome to Pathfinding Visualizer!',
+                  h6: 'This short tutorial will walk you through all of the features of this application.',
+                  p: 'If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!',
+                  other:"Hi I am Vishal",
+              })
+
+              break;
+          case 2:
+              setTutdata({
+                  h3:'What is a pathfinding algorithm?',
+                  h6:'At its core, a pathfinding algorithm seeks to find the shortest path between two points. This application visualizes various pathfinding algorithms in action, and more!',
+                  p:'All of the algorithms on this application are adapted for a 2D grid, where 90 degree turns have a "cost" of 1 and movements from a node to another have a "cost" of 1.',
+              })
+              break;
+          case 3:
+              setTutdata({
+                  h3:'Picking an algorithm',
+                  h6:'Choose an algorithm from the "Algorithms" drop-down menu.',
+                  p:'Note that some algorithms are <i><b>unweighted</b></i>, while others are <i><b>weighted</b></i>. Unweighted algorithms do not take turns or weight nodes into account, whereas weighted ones do. Additionally, not all algorithms guarantee the shortest path. ',
+              })
+              break;
+          default:
+              setTutdata({
+                  h3:'Welcome in AlgoViz Project',
+                  h6:"It's a project which demonstaight the working of different algorithms",
+                  p:'All of the algorithms on this application are adapted for a 2D grid, where 90 degree turns have a "cost" of 1 and movements from a node to another have a "cost" of 1.',
+              })
+      }
+  }, [page])
+
+  return (
+      <>
+          <div id="tutorial">
+              <h3>{Tutdata.h3}</h3>
+              <h6>{Tutdata.h6}</h6>
+              <p>{Tutdata.p}</p>
+              <p><b>{Tutdata.other}</b></p>
+              <div id="tutorialCounter">{page}/{totalpage}</div>
+              <button id="nextButton" className="btn btn-default navbar-btn" type="button" onClick={Next}>{page==totalpage?'FINISH':'NEXT'}</button>
+              <button id="previousButton" className="btn btn-default navbar-btn" type="button" onClick={Previous}>Previous</button>
+              <button id="skipButton" className="btn btn-default navbar-btn" type="button" onClick={Skip}>Skip Tutorial</button>
+          </div>
+      </>
+  )
+}
 export default class PathfindingVisualizer extends Component {
   constructor() {
     super();
@@ -35,7 +100,7 @@ export default class PathfindingVisualizer extends Component {
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
     this.toggleIsRunning = this.toggleIsRunning.bind(this);
   }
-
+  // ==========================================================================
   componentDidMount() {
     const grid = this.getInitialGrid();
     this.setState({ grid });
@@ -397,6 +462,7 @@ export default class PathfindingVisualizer extends Component {
     const { grid, mouseIsPressed } = this.state;
     return (
       <div>
+        <Tutorial/>
         <Box className="pathfinderbutton">
           <button
             type="button"
