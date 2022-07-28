@@ -7,7 +7,7 @@ import QueReply from "../Questions/QueReply";
 const Tutorial=() =>{
     const [page, setPage] = useState(1);
     const [Tutdata, setTutdata] = useState({})
-    const totalpage = 3; // === Please write total tutorial page use for this algorithm
+    const totalpage = 4; // === Please write total tutorial page use for this algorithm
     const Next = () => {
       if(page == totalpage) Skip();
       else if (page < totalpage) setPage(page + 1)
@@ -23,7 +23,7 @@ const Tutorial=() =>{
         switch (page) {
             case 1:
                 setTutdata({
-                    h3: 'Welcome to Pathfinding Visualizer!',
+                    h3: 'Welcome to Algorithm Visualizer!!',
                     h6: 'This short tutorial will walk you through all of the features of this application.',
                     p: 'If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!',
                     other:"Hi I am Vishal",
@@ -32,16 +32,22 @@ const Tutorial=() =>{
                 break;
             case 2:
                 setTutdata({
-                    h3:'What is a pathfinding algorithm?',
-                    h6:'At its core, a pathfinding algorithm seeks to find the shortest path between two points. This application visualizes various pathfinding algorithms in action, and more!',
-                    p:'All of the algorithms on this application are adapted for a 2D grid, where 90 degree turns have a "cost" of 1 and movements from a node to another have a "cost" of 1.',
+                    h3:'What is a convex Hull ?',
+                    h6:'The convex hull of a set of points is defined as the smallest convex polygon, that encloses all of the points in the set. Convex means that the polygon has no corner that is bent inwards',
+                    p:'As far as a convex hull problem is concerned , it is a problem of finding the smallest polygon from the given set of points such that it includes all the points in the given region.',
                 })
                 break;
             case 3:
                 setTutdata({
-                    h3:'Picking an algorithm',
-                    h6:'Choose an algorithm from the "Algorithms" drop-down menu.',
-                    p:'Note that some algorithms are <i><b>unweighted</b></i>, while others are <i><b>weighted</b></i>. Unweighted algorithms do not take turns or weight nodes into account, whereas weighted ones do. Additionally, not all algorithms guarantee the shortest path. ',
+                    h3:'How we will visualize convex hull of given points.',
+                    h6:'We will visualize the convex hull of given points by the help avery famous algorithm named graham scan algorithm.',
+                    p:'To find the convex hull of a set of points, we can use an algorithm called the Graham Scan, which is considered to be one of the first algorithms of computational geometry. Using this algorithm, we can find the subset of points that lie on the convex hull, along with the order in which these points are encountered when going around the convex hull. ',
+                })
+                break;
+            case 4:
+                setTutdata({
+                    h3:'What is Graham Scan ? How it Visualize the graham scan!',
+                    h6:"'Graham's scan is a method of finding the convex hull of a finite set of points in the plane with time complexity O(n log n). It is named after Ronald Graham, who published the original algorithm in 1972. The algorithm finds all vertices of the convex hull ordered along its boundary. It uses a stack to detect and remove concavities in the boundary efficiently.",
                 })
                 break;
             default:

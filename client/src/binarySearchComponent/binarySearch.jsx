@@ -23,7 +23,7 @@ const Tutorial=() =>{
         switch (page) {
             case 1:
                 setTutdata({
-                    h3: 'Welcome to Pathfinding Visualizer!',
+                    h3: 'Welcome to Algorithm Visualizer!',
                     h6: 'This short tutorial will walk you through all of the features of this application.',
                     p: 'If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!',
                     other:"Hi I am Vishal",
@@ -32,16 +32,17 @@ const Tutorial=() =>{
                 break;
             case 2:
                 setTutdata({
-                    h3:'What is a pathfinding algorithm?',
-                    h6:'At its core, a pathfinding algorithm seeks to find the shortest path between two points. This application visualizes various pathfinding algorithms in action, and more!',
-                    p:'All of the algorithms on this application are adapted for a 2D grid, where 90 degree turns have a "cost" of 1 and movements from a node to another have a "cost" of 1.',
+                    h3:'What is a Binary Search algorithm?',
+                    h6:'Binary Search is a searching algorithm used in a sorted array by repeatedly dividing the search interval in half. The idea of binary search is to use the information that the array is sorted and reduce the time complexity to O(Log n).',
+                    p:'If you wanted to deep dive into the concept of binary searching please click the link given bellow!s',
+                    
                 })
                 break;
             case 3:
                 setTutdata({
-                    h3:'Picking an algorithm',
-                    h6:'Choose an algorithm from the "Algorithms" drop-down menu.',
-                    p:'Note that some algorithms are <i><b>unweighted</b></i>, while others are <i><b>weighted</b></i>. Unweighted algorithms do not take turns or weight nodes into account, whereas weighted ones do. Additionally, not all algorithms guarantee the shortest path. ',
+                    h3:'What we will do in this block we will just play a game to find a number within 0 to 100.',
+                    h6:'In this game we will search the number which is unknown by using of the binary search.',
+                    p:'The user will think the number in his mind and we will ask him about the number between a range of number and after that go for the next step . As binary search do. ',
                 })
                 break;
             default:

@@ -13,7 +13,7 @@ import './PathfindingVisualizer.css';
 const Tutorial=() =>{
   const [page, setPage] = useState(1);
   const [Tutdata, setTutdata] = useState({})
-  const totalpage = 3; // === Please write total tutorial page used for this algorithm
+  const totalpage = 7; // === Please write total tutorial page used for this algorithm
   const Next = () => {
     if(page == totalpage) Skip();
     else if (page < totalpage) setPage(page + 1)
@@ -33,14 +33,14 @@ const Tutorial=() =>{
                   h6: 'This short tutorial will walk you through all of the features of this application.',
                   p: 'If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!',
                   other:"Hi I am Vishal",
-                  link:<Link to='www.google.com'>Video</Link>,
+                  link:<Link to='https://www.youtube.com/watch?v=P3YID7liBug'>Video</Link>,
               })
 
               break;
           case 2:
               setTutdata({
-                  h3:'What is a pathfinding algorithm?',
-                  h6:'At its core, a pathfinding algorithm seeks to find the shortest path between two points. This application visualizes various pathfinding algorithms in action, and more!',
+                  h3:'What is a pathfinding visualizer?',
+                  h6:'At its core, a pathfinding visualizer seeks to find the shortest path between two points. This application visualizes various pathfinding algorithms in action, and more!',
                   p:'All of the algorithms on this application are adapted for a 2D grid, where 90 degree turns have a "cost" of 1 and movements from a node to another have a "cost" of 1.',
               })
               break;
@@ -51,6 +51,35 @@ const Tutorial=() =>{
                   p:'Note that some algorithms are <i><b>unweighted</b></i>, while others are <i><b>weighted</b></i>. Unweighted algorithms do not take turns or weight nodes into account, whereas weighted ones do. Additionally, not all algorithms guarantee the shortest path. ',
               })
               break;
+          case 4:
+              setTutdata({
+                  h3:'What is a pathfinding algorithm?',
+                  h6:'A pathfinding algorithm is nothing but a searching which are used to search the nearest nodes.',
+                  p:"There are major four types of algorithms which are used into this block which are as Dijkstra's Algorithm , A* Algorithm, DFS and BFS algo.",
+              })
+              break;              
+          case 5:
+              setTutdata({
+                  h3:"Dijkstra's algorithm?",
+                  h6:'This is a popular algorithm for finding shortest path between two nodes given by computer scientist Edsger W.Dijkstra.There are many versions of Dijkstra algorithm but in this module we will see the common variant which fixes a single node marks it as a source and find shortest path from the source to the destination node.',
+                  p:"The paths are labeled as positive integers or real numbers and are ordered for traversing.It uses a separate data structure for storing partial solutions or distance from the source while original algorithm uses a min priority queue.",
+              })
+              break;              
+          case 6:
+              setTutdata({
+                  h3:"A* algorithm?",
+                  h6:"A* Search (weighted): arguably the best pathfinding algorithm; uses heuristics to guarantee the shortest path much faster than Dijkstra's Algorithm",
+                  p:" A* is classified as one of the best and optimal algorithms for shortest path finding and graph traversal.It is often known for its completeness , optimality and efficiency.It uses heuristics value for guiding its path and also considered as extension of Dijkstra algorithm.",
+              })
+              break;              
+          case 7:
+              setTutdata({
+                  h3:"DFS and BFS algorithm?",
+                  h6:'DFS stands for depth first search and BFS stands for breadth first search. These both algorithm are using bruteforce approach for finding the path.',
+                  p:"The major difference between them is that dfs starts tracersing its nodes to depth of parent node and bfs traverse each and every level of tree parallely.",
+              })
+              break;              
+
           default:
               setTutdata({
                   h3:'Welcome in AlgoViz Project',

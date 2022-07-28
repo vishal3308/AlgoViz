@@ -7,7 +7,7 @@ import QueReply from "../Questions/QueReply";
 const Tutorial=() =>{
     const [page, setPage] = useState(1);
     const [Tutdata, setTutdata] = useState({})
-    const totalpage = 3; // === Please write total tutorial page use for this algorithm
+    const totalpage = 4; // === Please write total tutorial page use for this algorithm
     const Next = () => {
       if(page == totalpage) Skip();
       else if (page < totalpage) setPage(page + 1)
@@ -23,7 +23,7 @@ const Tutorial=() =>{
         switch (page) {
             case 1:
                 setTutdata({
-                    h3: 'Welcome to Pathfinding Visualizer!',
+                    h3: 'Welcome to N Queen Visualization!',
                     h6: 'This short tutorial will walk you through all of the features of this application.',
                     p: 'If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!',
                     other:"Hi I am Vishal",
@@ -32,18 +32,24 @@ const Tutorial=() =>{
                 break;
             case 2:
                 setTutdata({
-                    h3:'What is a pathfinding algorithm?',
-                    h6:'At its core, a pathfinding algorithm seeks to find the shortest path between two points. This application visualizes various pathfinding algorithms in action, and more!',
-                    p:'All of the algorithms on this application are adapted for a 2D grid, where 90 degree turns have a "cost" of 1 and movements from a node to another have a "cost" of 1.',
+                    h3:'What is a N Queen visualization?',
+                    h6:'The N-Queen problem is a famous problem of placing N queens under some specific conditions.The problem is to place N-queens in a NxN grid such that no two queens can attack each other. More specifically a  column or row must not contain more than one queen and no two queens face each other diagonally as well.',
+                    p:'This part is a dynamic visualization of N -Queen problem in which users can easily observe how recursion and backtracking processes take place. ',
                 })
                 break;
             case 3:
                 setTutdata({
-                    h3:'Picking an algorithm',
-                    h6:'Choose an algorithm from the "Algorithms" drop-down menu.',
-                    p:'Note that some algorithms are <i><b>unweighted</b></i>, while others are <i><b>weighted</b></i>. Unweighted algorithms do not take turns or weight nodes into account, whereas weighted ones do. Additionally, not all algorithms guarantee the shortest path. ',
+                    h3:'What is Backtracking Algorithm',
+                    h6:'Backtracking is an algorithmic technique for solving problems recursively by trying to build a solution incrementally, one piece at a time, removing those solutions that fail to satisfy the constraints of the problem at any point in time (by time, here, is referred to the time elapsed till reaching any level of the search tree).  ',
+                    p:' Backtracking can also be said as an improvement to the brute force approach. So basically, the idea behind the backtracking technique is that it searches for a solution to a problem among all the available options.',
                 })
                 break;
+                case 4:
+                    setTutdata({
+                        h3:'How Backtracking Algorithm solves the N Queen Problem?',
+                        h6:" When we place a queen in a column, we check for clashes with already placed queens. In the current column, if we find a row for which there is no clash, we mark this row and column as part of the solution. If we do not find such a row due to clashes, then we backtrack and return false.",
+                    })
+                    break;
             default:
                 setTutdata({
                     h3:'Welcome in AlgoViz Project',

@@ -10,7 +10,8 @@
 }
 
 .node-start {
-  background-color: green;
+  /* background-image: url(./public/start.png); */
+  background-color: rgb(13, 179, 13);
 }
 
 .node-visited {
