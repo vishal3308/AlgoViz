@@ -3,6 +3,7 @@ import Rects from "./rects";
 import mergeSort from '../algorithms/mergeSort';
 import heapSort from "../algorithms/heapSort";
 import {quickSortRecursive} from "../algorithms/quickSortRecursive";
+import { Button } from '@material-ui/core';
 import Menu from "./menu";
 import QueReply from "../Questions/QueReply";
 
@@ -10,7 +11,7 @@ import QueReply from "../Questions/QueReply";
 const Tutorial=() =>{
     const [page, setPage] = useState(1);
     const [Tutdata, setTutdata] = useState({})
-    const totalpage = 3; // === Please write total tutorial page use for this algorithm
+    const totalpage = 5; // === Please write total tutorial page use for this algorithm
     const Next = () => {
       if(page == totalpage) Skip();
       else if (page < totalpage) setPage(page + 1)
@@ -29,22 +30,36 @@ const Tutorial=() =>{
                     h3: 'Welcome to Pathfinding Visualizer!',
                     h6: 'This short tutorial will walk you through all of the features of this application.',
                     p: 'If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!',
-                    other:"Hi I am Vishal",
                 })
   
                 break;
             case 2:
                 setTutdata({
-                    h3:'What is a pathfinding algorithm?',
-                    h6:'At its core, a pathfinding algorithm seeks to find the shortest path between two points. This application visualizes various pathfinding algorithms in action, and more!',
-                    p:'All of the algorithms on this application are adapted for a 2D grid, where 90 degree turns have a "cost" of 1 and movements from a node to another have a "cost" of 1.',
+                    h3:'What is Recurrsive sorting',
+                    h6:'The process in which a function calls itself directly or indirectly is called recursion and the corresponding function is called a recursive function. Using a recursive algorithm, certain problems can be solved quite easily.',
+                    p:'Recursive techniques can be utilized in sorting algorithms, allowing for the sorting of n elements in O(nlogn) time (compared with the O(n2) efficiency of bubble sort. Two such algorithms which will be examined here are Mergesort, Quicksort and Heap Sort.',
                 })
                 break;
-            case 3:
+                case 3:
                 setTutdata({
-                    h3:'Picking an algorithm',
-                    h6:'Choose an algorithm from the "Algorithms" drop-down menu.',
-                    p:'Note that some algorithms are <i><b>unweighted</b></i>, while others are <i><b>weighted</b></i>. Unweighted algorithms do not take turns or weight nodes into account, whereas weighted ones do. Additionally, not all algorithms guarantee the shortest path. ',
+                    h3: 'Quick Sort',
+                    p: 'Like Merge sort Quick sort is also a divide and conquer technique for sorting lists.It is the most commonly used algorithm for sorting and pretty optimal as well. It selects a pivot element from the list and partition the list into two sublists according to whether they are higher than pivot or not.After this the sublists are sorted recursively.It may give absurd results when elements in the list are repeated or equal,but most of the time it sorts them in nearly linear time',
+                    link: <Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/quick-sort/' target="_blank">See Algorithm</a></Button>,
+                })
+                break;
+            case 4:
+                setTutdata({
+                    h3:'Merge Sort',
+                    p:'Merge sort is referred to as one of the efficient sorting algorithms and is a type of divide and conquer algorithm.It divides the unsorted list into multiple sublists each with one element and merge them repeatedly to produce new sorted list and this process is continued until only one sublist is remained.The merging process nearly takes linear time so it is quite fast algorithm for sorting.',
+                    link:<Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/merge-sort/' target="_blank">See Algorithm</a></Button>,
+                })
+                break;
+                case 5:
+                    setTutdata({
+                        h3:'Heap Sort',
+                        p:'Heap sort is a comparison-based sorting technique based on Binary Heap data structure. It is similar to selection sort where we first find the minimum element and place the minimum element at the beginning. We repeat the same process for the remaining elements.',
+                        link:<Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/heap-sort/' target="_blank">See Algorithm</a></Button>,
+
                 })
                 break;
             default:
@@ -62,7 +77,7 @@ const Tutorial=() =>{
                 <h3>{Tutdata.h3}</h3>
                 <h6>{Tutdata.h6}</h6>
                 <p>{Tutdata.p}</p>
-                <p><b>{Tutdata.other}</b></p>
+                <p><b>{Tutdata.link}</b></p>
                 <div id="tutorialCounter">{page}/{totalpage}</div>
                 <button id="nextButton" className="btn btn-default navbar-btn" type="button" onClick={Next}>{page==totalpage?'FINISH':'NEXT'}</button>
                 <button id="previousButton" className="btn btn-default navbar-btn" type="button" onClick={Previous}>Previous</button>

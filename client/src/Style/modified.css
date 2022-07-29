@@ -65,6 +65,10 @@ background-color: rgb(211, 211, 212);
 	top: 5px;
 	right: 40%;
 }
+#tutorial a{
+	text-decoration: none;
+    color: #fff;
+}
 
 /* =========================== Tutorial CSS================================== */
 #tutorial *{

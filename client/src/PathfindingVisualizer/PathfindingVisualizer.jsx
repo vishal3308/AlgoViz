@@ -1,5 +1,5 @@
 import React, { Component,useState,useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 import Node from './Node/Node';
 import { dijkstra } from '../Pathfinderalgo/dijkstra';
 import { AStar } from '../Pathfinderalgo/aStar';
@@ -32,8 +32,6 @@ const Tutorial=() =>{
                   h3: 'Welcome to Pathfinding Visualizer!',
                   h6: 'This short tutorial will walk you through all of the features of this application.',
                   p: 'If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!',
-                  other:"Hi I am Vishal",
-                  link:<Link to='https://www.youtube.com/watch?v=P3YID7liBug'>Video</Link>,
               })
 
               break;
@@ -48,7 +46,7 @@ const Tutorial=() =>{
               setTutdata({
                   h3:'Picking an algorithm',
                   h6:'Choose an algorithm from the "Algorithms" drop-down menu.',
-                  p:'Note that some algorithms are <i><b>unweighted</b></i>, while others are <i><b>weighted</b></i>. Unweighted algorithms do not take turns or weight nodes into account, whereas weighted ones do. Additionally, not all algorithms guarantee the shortest path. ',
+                  p:<p>Note that some algorithms are <i><b>unweighted</b></i>, while others are <i><b>weighted</b></i>. Unweighted algorithms do not take turns or weight nodes into account, whereas weighted ones do. Additionally, not all algorithms guarantee the shortest path. </p>,
               })
               break;
           case 4:
@@ -63,6 +61,8 @@ const Tutorial=() =>{
                   h3:"Dijkstra's algorithm?",
                   h6:'This is a popular algorithm for finding shortest path between two nodes given by computer scientist Edsger W.Dijkstra.There are many versions of Dijkstra algorithm but in this module we will see the common variant which fixes a single node marks it as a source and find shortest path from the source to the destination node.',
                   p:"The paths are labeled as positive integers or real numbers and are ordered for traversing.It uses a separate data structure for storing partial solutions or distance from the source while original algorithm uses a min priority queue.",
+                  link:<Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/' target="_blank">See Algorithm</a></Button>,
+                  
               })
               break;              
           case 6:
@@ -70,20 +70,24 @@ const Tutorial=() =>{
                   h3:"A* algorithm?",
                   h6:"A* Search (weighted): arguably the best pathfinding algorithm; uses heuristics to guarantee the shortest path much faster than Dijkstra's Algorithm",
                   p:" A* is classified as one of the best and optimal algorithms for shortest path finding and graph traversal.It is often known for its completeness , optimality and efficiency.It uses heuristics value for guiding its path and also considered as extension of Dijkstra algorithm.",
-              })
+                  link:<Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/a-search-algorithm/' target="_blank">See Algorithm</a></Button>,
+
+                })
               break;              
           case 7:
               setTutdata({
                   h3:"DFS and BFS algorithm?",
                   h6:'DFS stands for depth first search and BFS stands for breadth first search. These both algorithm are using bruteforce approach for finding the path.',
                   p:"The major difference between them is that dfs starts tracersing its nodes to depth of parent node and bfs traverse each and every level of tree parallely.",
-              })
+                  link:<Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/' target="_blank">See Algorithm</a></Button>,
+
+                })
               break;              
 
           default:
               setTutdata({
                   h3:'Welcome in AlgoViz Project',
-                  h6:"It's a project which demonstaight the working of different algorithms",
+                  h6:"It's a project which demonstrate the working of different algorithms",
                   p:'All of the algorithms on this application are adapted for a 2D grid, where 90 degree turns have a "cost" of 1 and movements from a node to another have a "cost" of 1.',
               })
       }
@@ -95,7 +99,6 @@ const Tutorial=() =>{
               <h3>{Tutdata.h3}</h3>
               <h6>{Tutdata.h6}</h6>
               <p>{Tutdata.p}</p>
-              <p><b>{Tutdata.other}</b></p>
               <p>{Tutdata.link}</p>
               <div id="tutorialCounter">{page}/{totalpage}</div>
               <button id="nextButton" className="btn btn-default navbar-btn" type="button" onClick={Next}>{page==totalpage?'FINISH':'NEXT'}</button>

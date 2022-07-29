@@ -1,4 +1,5 @@
 import React, { Component,useState,useEffect } from 'react';
+import { Button } from '@material-ui/core';
 import Canvas from "./canvas";
 import Menu from "./menu";
 import QueReply from "../Questions/QueReply";
@@ -26,7 +27,6 @@ const Tutorial=() =>{
                     h3: 'Welcome to Algorithm Visualizer!!',
                     h6: 'This short tutorial will walk you through all of the features of this application.',
                     p: 'If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!',
-                    other:"Hi I am Vishal",
                 })
   
                 break;
@@ -47,7 +47,9 @@ const Tutorial=() =>{
             case 4:
                 setTutdata({
                     h3:'What is Graham Scan ? How it Visualize the graham scan!',
-                    h6:"'Graham's scan is a method of finding the convex hull of a finite set of points in the plane with time complexity O(n log n). It is named after Ronald Graham, who published the original algorithm in 1972. The algorithm finds all vertices of the convex hull ordered along its boundary. It uses a stack to detect and remove concavities in the boundary efficiently.",
+                    p:"'Graham's scan is a method of finding the convex hull of a finite set of points in the plane with time complexity O(n log n). It is named after Ronald Graham, who published the original algorithm in 1972. The algorithm finds all vertices of the convex hull ordered along its boundary. It uses a stack to detect and remove concavities in the boundary efficiently.",
+                  link:<Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/convex-hull-using-divide-and-conquer-algorithm/' target="_blank">See Algorithm</a></Button>,
+                    
                 })
                 break;
             default:
@@ -65,7 +67,7 @@ const Tutorial=() =>{
                 <h3>{Tutdata.h3}</h3>
                 <h6>{Tutdata.h6}</h6>
                 <p>{Tutdata.p}</p>
-                <p><b>{Tutdata.other}</b></p>
+                <p>{Tutdata.link}</p>
                 <div id="tutorialCounter">{page}/{totalpage}</div>
                 <button id="nextButton" className="btn btn-default navbar-btn" type="button" onClick={Next}>{page==totalpage?'FINISH':'NEXT'}</button>
                 <button id="previousButton" className="btn btn-default navbar-btn" type="button" onClick={Previous}>Previous</button>
