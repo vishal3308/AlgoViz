@@ -8,7 +8,7 @@
 }
 
 .Cards{
-    background-color: rgb(107, 129, 224);
+    background-color: #ff4c68;
     align-items: center;
     align-self: center;
     align-content: center;
@@ -20,11 +20,11 @@
 }
 .footer-copyright{
     color:white;
-    background-color: black;
+    background-color: rgb(70, 69, 67);
 }
 .greet{
     text-align: center;
-    background-color: rgb(1, 6, 7);
+    background-color: #ED6663;
     color: white;
     padding: 10px;
 }
