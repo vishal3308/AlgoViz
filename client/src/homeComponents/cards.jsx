@@ -1,13 +1,9 @@
 import React, {Component} from 'react';
-import ImgMediaCard from "./card";
+// import ImgMediaCard from "./card";
 import ImgMediaCard2 from "./card2";
 import "./style.css";
-import {Link} from "react-router-dom";
-import graph from "./images/graph.png";
 // import primes from "./images/primes.jpg"
-import sort from "./sort.png"
-import queen from './images/queen.PNG'
-import binSearch from './images/binaryTree.png'
+
 import {getDetails} from "./cardDetails";
 import TextField from "@material-ui/core/TextField";
 class Cards extends Component {

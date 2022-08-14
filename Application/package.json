@@ -1,0 +1,17 @@
+{
+  "name": "algovisu",
+  "author": "Vishal Maurya",
+  "description": "Algorithms Visualization for education",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build":"electron-builder"
+  },
+  
+  "version": "1.0.0",
+  "license": "ISC",
+  "devDependencies": {
+    "electron-builder": "^23.3.3"
+  }
+}

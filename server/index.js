@@ -1,10 +1,12 @@
 const express = require('express');
+const path=require('path');
 const session = require('express-session')
 const passport = require('passport')
 const cors = require('cors')
 const jwt = require('jsonwebtoken');
 const User = require('./Database/Userschema');
 const Que_ans = require('./Database/Questionschema');
+const bcrypt = require('bcrypt')
 const jwtkey = 'e-commerce';
 const PORT = process.env.PORT || 4001;
 const PortalURL = 'http://localhost:3001';
@@ -23,9 +25,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // =======================Home===================
-app.get('/', async (req, resp) => {
-  resp.send("Algo viz Home page");
-})
+// app.get('/', async (req, resp) => {
+//   resp.send("Algo viz Home page");
+// })
 // =========================== verifying JWT Token as Middleware==========
 const verifyingJWT = (req, resp, next) => {
   const token = req.headers['authorization'];
@@ -43,7 +45,7 @@ const verifyingJWT = (req, resp, next) => {
 
 // ================================Google Authentication===================
 
-app.get('/auth/google',
+app.get('/api/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 app.get('/auth/google/callback',
@@ -51,9 +53,9 @@ app.get('/auth/google/callback',
     const user = req.user
     jwt.sign({ user }, jwtkey, { expiresIn: Math.floor(Date.now() / 1000) + (60 * 60) }, (err, token) => {
       if (err) {
-        resp.redirect(PortalURL + `/login?Error=${err.message}`)
+        resp.redirect(`/login?Error=${err.message}`)
       }
-      resp.redirect(PortalURL + `/Authenticate?auth=${token}&name=${req.user.name}&email=${req.user.email}&avatar=${req.user.avatar}`)
+      resp.redirect(`/Authenticate?auth=${token}&name=${req.user.name}&email=${req.user.email}&avatar=${req.user.avatar}`)
     })
   }
 );
@@ -66,7 +68,7 @@ app.get('/login/failure', (req, resp) => {
 
 
 // ================================== Sign up====================
-app.post('/signup', async (req, resp) => {
+app.post('/api/signup', async (req, resp) => {
   const data = new User(req.body);
   await data.save().then((result) => {
     let user = result.toObject();
@@ -83,37 +85,41 @@ app.post('/signup', async (req, resp) => {
     });
 })
 // ================================== Login====================
-app.post('/login', async (req, resp) => {
+app.post('/api/login', async (req, resp) => {
   let Email = req.body.email;
   let Password = req.body.password;
-  const method = await User.findOne({ email: Email }, { registration_type: 1 });
-  if (method) {
-    if (method.registration_type == 'Local') {
-      const user = await User.findOne({ $and: [{ email: Email }, { password: Password }] }, { name: 1, email: 1, avatar: 1 });
-      if (user) {
-        jwt.sign({ user }, jwtkey, { expiresIn: Math.floor(Date.now() / 1000) + (60 * 60) }, (err, token) => {
-          if (err) {
-            resp.status(401).send({ Error: 'Something went wrong.' })
-          }
-          resp.status(200).send({ user, auth: token, Error: false })
-        })
-      }
-      else {
-        resp.status(401).send({ Error: 'Email or password is wrong.' })
-      }
-
+  let user = await User.findOne({ email: Email }, { registration_type: 1, password: 1,name: 1, email: 1, avatar: 1 });
+  if (user) {
+    if (user.registration_type == 'Local') {
+      const Hash_Pass = user.password;
+      await bcrypt.compare(Password, Hash_Pass).then(valid => {
+        if (valid) {
+          jwt.sign({ user }, jwtkey, { expiresIn: Math.floor(Date.now() / 1000) + (60 * 60) }, (err, token) => {
+            if (err) {
+              resp.status(401).send({ Error: 'Something went wrong.' })
+            }
+             user=user.toObject();
+            delete user.password;
+            delete user._id;
+            resp.status(200).send({ user, auth: token, Error: false })
+          })
+        }
+        else {
+          resp.status(401).send({ Error: 'Password is wrong.' })
+        }
+      }).catch(err=>resp.status(401).send({ Error: 'Server have some issue please try after some time.' }))
     }
     else {
-      resp.status(401).send({ Error: "Please choose 'Continue with Google option' because you already register with Google Account" })
+      resp.status(401).send({ Error: "Please choose 'Continue with Google option'" })
     }
   }
   else {
-    resp.status(401).send({ Error: 'You are a new Member, please Sign Up.' })
+    resp.status(200).send({ Error: "Email Id is not found.'" })
 
   }
 })
 // ============================ Question Post/ Ask a question======================
-app.post('/postquestion', verifyingJWT, async (req, resp) => {
+app.post('/api/postquestion', verifyingJWT, async (req, resp) => {
   const que = new Que_ans(req.body);
   await que.save().then((result) => {
     resp.send({ Message: "Successfully posted" })
@@ -123,7 +129,7 @@ app.post('/postquestion', verifyingJWT, async (req, resp) => {
 })
 
 //======================== Geeting all Questions===========================
-app.post('/allquestion',async(req,resp)=>{
+app.post('/api/allquestion',async(req,resp)=>{
   const pagename=req.body.pagename;
   await Que_ans.find({pagename:pagename}).sort({_id:-1})
   .then((result)=>{
@@ -134,7 +140,7 @@ app.post('/allquestion',async(req,resp)=>{
 }) 
 
 // ==================== Reply / Answer post=============================
-app.post('/postreply', verifyingJWT, async (req, resp) => {
+app.post('/api/postreply', verifyingJWT, async (req, resp) => {
   const queid = req.body.queid;
   const userid = req.body.userid;
   const username = req.body.name;
@@ -182,11 +188,20 @@ app.post('/postreply', verifyingJWT, async (req, resp) => {
 })
 
 // ========================================= Logout ===========
-app.get('/logout', (req, resp) => {
+app.get('/api/logout', (req, resp) => {
   req.logout(() => {
     console.log('Logged out !!')
   });
   resp.status(200).send('Successfully logout');
 })
 
-app.listen(PORT);
+// ====================== Heroku Code==============
+app.use(express.static(path.join(__dirname, "client/build")));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+});
+
+app.listen(PORT,()=>{
+  console.log("Server is running on ",PORT)
+});

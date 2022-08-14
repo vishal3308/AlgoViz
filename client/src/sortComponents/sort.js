@@ -12,7 +12,7 @@ const Tutorial = () => {
     const [Tutdata, setTutdata] = useState({})
     const totalpage = 8 // === Please write total tutorial page use for this algorithm
     const Next = () => {
-        if (page == totalpage) Skip();
+        if (page === totalpage) Skip();
         else if (page < totalpage) setPage(page + 1)
     }
     const Previous = () => {
@@ -28,7 +28,7 @@ const Tutorial = () => {
                 setTutdata({
                     h3: 'Welcome to Sorting Visualizer!',
                     h6: 'This short tutorial will walk you through all of the features of this application.',
-                    p: 'If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!',
+                    p: <p>If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!</p>,
                 })
 
                 break;
@@ -36,58 +36,58 @@ const Tutorial = () => {
                 setTutdata({
                     h3: 'What is a Sorting Visualizer ?',
                     h6: 'This sorting visualizer is nothing but a javascript tool to visualize the sorting algorithms.In Sorting visualizer array is provide in the form of grids,created by javascript.',
-                    p: 'User has the option to select the algorithms in drop down menu, and can control the runnning time of algorithm by speed block.',
+                    p: <p>User has the option to select the algorithms in drop down menu, and can control the runnning time of algorithm by speed block.</p>,
                 })
                 break;
             case 3:
                 setTutdata({
                     h3: 'Sorting algorithms used in this module?',
                     h6: 'There are different sorting algorithms present, users can select anyone of the algorithm which they wants to visualize. ',
-                    p: "There are major four types of sorting algorithm are used into this block which are Bubble sort, Selection sort, Insertion sort and Quick sort.",
+                    p: <p>There are major four types of sorting algorithm are used into this block which are Bubble sort, Selection sort, Insertion sort and Quick sort.</p>,
                 })
                 break;
             case 4:
                 setTutdata({
                     h3: 'Bubble Sort',
-                    p: 'Bubble sort is the simplest sorting algorithm that iterates through the whole list and swaps elements according to their values.This process happens until the list is sorted.In general bubble sort works poorly as compared to other sorting algorithms.The time complexity of this algorithm is way higher than other sorting algorithms.',
-                    link: <Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/bubble-sort/' target="_blank">See Algorithm</a></Button>,
+                    p: <p>Bubble sort is the simplest sorting algorithm that iterates through the whole list and swaps elements according to their values.This process happens until the list is sorted.In general bubble sort works poorly as compared to other sorting algorithms.The time complexity of this algorithm is way higher than other sorting algorithms.</p>,
+                    link: <Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/bubble-sort/' rel="noreferrer" target="_blank">See Algorithm</a></Button>,
 
                 })
                 break;
             case 5:
                 setTutdata({
                     h3: 'Selection Sort',
-                    p: 'This is a type of in place comparison and swap sorting algorithm.It divides the whole list into two parts the sorted part on the left and the unsorted part on the right.Initially the left part is empty and the right part contains the whole list. Further the smallest element selected from the unsorted part and swapped with the leftmost part of the sorted array and this process continues until no element is left in the unsorted part .Like insertion sort this algorithm is also not suitable for large data items and the reason is its quadratic time complexity',
-                    link: <Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/selection-sort/' target="_blank">See Algorithm</a></Button>,
-                    
+                    p: <p>This is a type of in place comparison and swap sorting algorithm.It divides the whole list into two parts the sorted part on the left and the unsorted part on the right.Initially the left part is empty and the right part contains the whole list. Further the smallest element selected from the unsorted part and swapped with the leftmost part of the sorted array and this process continues until no element is left in the unsorted part .Like insertion sort this algorithm is also not suitable for large data items and the reason is its quadratic time complexity</p>,
+                    link: <Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/selection-sort/' rel="noreferrer" target="_blank">See Algorithm</a></Button>,
+
                 })
                 break;
             case 6:
                 setTutdata({
                     h3: 'Insertion Sort',
-                    p: 'It is one of the simplest and adaptive sorting algorithms which is easy to implement on small lists and arrays. It deals with one input element in one repetition and grows the sorted list each time.One element is removed from the list and placed at a location from where it belongs in the sorted list , this process happens in each iteration until the whole list is sorted and no input element remains.It behaves poorly for long lists due to its quadratic time complexity',
-                    link: <Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/insertion-sort/' target="_blank">See Algorithm</a></Button>,
+                    p: <p>It is one of the simplest and adaptive sorting algorithms which is easy to implement on small lists and arrays. It deals with one input element in one repetition and grows the sorted list each time.One element is removed from the list and placed at a location from where it belongs in the sorted list , this process happens in each iteration until the whole list is sorted and no input element remains.It behaves poorly for long lists due to its quadratic time complexity</p>,
+                    link: <Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/insertion-sort/' rel="noreferrer" target="_blank">See Algorithm</a></Button>,
                 })
                 break;
             case 7:
                 setTutdata({
                     h3: 'Quick Sort',
-                    p: 'Like Merge sort Quick sort is also a divide and conquer technique for sorting lists.It is the most commonly used algorithm for sorting and pretty optimal as well. It selects a pivot element from the list and partition the list into two sublists according to whether they are higher than pivot or not.After this the sublists are sorted recursively.It may give absurd results when elements in the list are repeated or equal,but most of the time it sorts them in nearly linear time',
-                    link: <Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/quick-sort/' target="_blank">See Algorithm</a></Button>,
+                    p: <p>Like Merge sort Quick sort is also a divide and conquer technique for sorting lists.It is the most commonly used algorithm for sorting and pretty optimal as well. It selects a pivot element from the list and partition the list into two sublists according to whether they are higher than pivot or not.After this the sublists are sorted recursively.It may give absurd results when elements in the list are repeated or equal,but most of the time it sorts them in nearly linear time</p>,
+                    link: <Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/quick-sort/' rel="noreferrer" target="_blank">See Algorithm</a></Button>,
                 })
                 break;
             case 8:
                 setTutdata({
                     h3: 'Notice',
                     h6: 'There are four type of algorithm used in this page in which Quick sort and Insertion sort are faster than Bubble sort and Selection sort.',
-                    p:<p>We are providing a <b>DUO</b> button which help to demonstrate two algorithm simulteniousaly.</p>,
+                    p: <p>We are providing a <b>DUO</b> button which help to demonstrate two algorithm simultaneously.</p>,
                 })
                 break;
             default:
                 setTutdata({
                     h3: 'Welcome in AlgoViz Project',
                     h6: "It's a project which demonstaight the working of different algorithms",
-                    p: 'All of the algorithms on this application are adapted for a 2D grid, where 90 degree turns have a "cost" of 1 and movements from a node to another have a "cost" of 1.',
+                    p: <p>All of the algorithms on this application are adapted for a 2D grid, where 90 degree turns have a "cost" of 1 and movements from a node to another have a "cost" of 1.</p>,
                 })
         }
     }, [page])
@@ -97,7 +97,7 @@ const Tutorial = () => {
             <div id="tutorial">
                 <h3>{Tutdata.h3}</h3>
                 <h6>{Tutdata.h6}</h6>
-                <p>{Tutdata.p}</p>
+                {Tutdata.p}
                 <p><b>{Tutdata.link}</b></p>
                 <div id="tutorialCounter">{page}/{totalpage}</div>
                 <button id="nextButton" className="btn btn-default navbar-btn" type="button" onClick={Next}>{page == totalpage ? 'FINISH' : 'NEXT'}</button>

@@ -10,7 +10,7 @@ const Tutorial = () => {
     const [Tutdata, setTutdata] = useState({})
     const totalpage = 3; // === Please write total tutorial page use for this algorithm
     const Next = () => {
-        if (page == totalpage) Skip();
+        if (page === totalpage) Skip();
         else if (page < totalpage) setPage(page + 1)
     }
     const Previous = () => {
@@ -35,7 +35,7 @@ const Tutorial = () => {
                     h3: 'What is a Binary Search algorithm?',
                     h6: 'Binary Search is a searching algorithm used in a sorted array by repeatedly dividing the search interval in half. The idea of binary search is to use the information that the array is sorted and reduce the time complexity to O(Log n).',
                     p: 'If you wanted to deep dive into the concept of binary searching please click the link given bellow!s',
-                    link: <Button variant='contained' color='primary'><a href='https://www.youtube.com/watch?v=P3YID7liBug' target="_blank">Watch Video</a></Button>,
+                    link: <Button variant='contained' color='primary'><a href='https://www.youtube.com/watch?v=P3YID7liBug' rel='noreferrer' target="_blank">Watch Video</a></Button>,
 
                 })
                 break;
@@ -44,7 +44,7 @@ const Tutorial = () => {
                     h3: 'What we will do in this block we will just play a game to find a number within 0 to 100.',
                     h6: 'In this game we will search the number which is unknown by using of the binary search.',
                     p: 'The user will think the number in his mind and we will ask him about the number between a range of number and after that go for the next step . As binary search do. ',
-                    link: <Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/binary-search/' target="_blank">See Algorithm</a></Button>,
+                    link: <Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/binary-search/' rel='noreferrer' target="_blank">See Algorithm</a></Button>,
 
                 })
                 break;
@@ -65,7 +65,7 @@ const Tutorial = () => {
                 <p>{Tutdata.p}</p>
                 <p><b>{Tutdata.link}</b></p>
                 <div id="tutorialCounter">{page}/{totalpage}</div>
-                <button id="nextButton" className="btn btn-default navbar-btn" type="button" onClick={Next}>{page == totalpage ? 'FINISH' : 'NEXT'}</button>
+                <button id="nextButton" className="btn btn-default navbar-btn" type="button" onClick={Next}>{page === totalpage ? 'FINISH' : 'NEXT'}</button>
                 <button id="previousButton" className="btn btn-default navbar-btn" type="button" onClick={Previous}>Previous</button>
                 <button id="skipButton" className="btn btn-default navbar-btn" type="button" onClick={Skip}>Skip Tutorial</button>
             </div>

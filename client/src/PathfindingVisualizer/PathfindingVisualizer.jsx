@@ -15,7 +15,7 @@ const Tutorial=() =>{
   const [Tutdata, setTutdata] = useState({})
   const totalpage = 7; // === Please write total tutorial page used for this algorithm
   const Next = () => {
-    if(page == totalpage) Skip();
+    if(page === totalpage) Skip();
     else if (page < totalpage) setPage(page + 1)
   }
   const Previous = () => {
@@ -61,7 +61,7 @@ const Tutorial=() =>{
                   h3:"Dijkstra's algorithm?",
                   h6:'This is a popular algorithm for finding shortest path between two nodes given by computer scientist Edsger W.Dijkstra.There are many versions of Dijkstra algorithm but in this module we will see the common variant which fixes a single node marks it as a source and find shortest path from the source to the destination node.',
                   p:"The paths are labeled as positive integers or real numbers and are ordered for traversing.It uses a separate data structure for storing partial solutions or distance from the source while original algorithm uses a min priority queue.",
-                  link:<Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/' target="_blank">See Algorithm</a></Button>,
+                  link:<Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/' target="_blank" rel='noreferrer'>See Algorithm</a></Button>,
                   
               })
               break;              
@@ -70,7 +70,7 @@ const Tutorial=() =>{
                   h3:"A* algorithm?",
                   h6:"A* Search (weighted): arguably the best pathfinding algorithm; uses heuristics to guarantee the shortest path much faster than Dijkstra's Algorithm",
                   p:" A* is classified as one of the best and optimal algorithms for shortest path finding and graph traversal.It is often known for its completeness , optimality and efficiency.It uses heuristics value for guiding its path and also considered as extension of Dijkstra algorithm.",
-                  link:<Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/a-search-algorithm/' target="_blank">See Algorithm</a></Button>,
+                  link:<Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/a-search-algorithm/' rel='noreferrer' target="_blank">See Algorithm</a></Button>,
 
                 })
               break;              
@@ -79,7 +79,7 @@ const Tutorial=() =>{
                   h3:"DFS and BFS algorithm?",
                   h6:'DFS stands for depth first search and BFS stands for breadth first search. These both algorithm are using bruteforce approach for finding the path.',
                   p:"The major difference between them is that dfs starts tracersing its nodes to depth of parent node and bfs traverse each and every level of tree parallely.",
-                  link:<Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/' target="_blank">See Algorithm</a></Button>,
+                  link:<Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/' rel='noreferrer' target="_blank">See Algorithm</a></Button>,
 
                 })
               break;              
@@ -101,7 +101,7 @@ const Tutorial=() =>{
               <p>{Tutdata.p}</p>
               <p>{Tutdata.link}</p>
               <div id="tutorialCounter">{page}/{totalpage}</div>
-              <button id="nextButton" className="btn btn-default navbar-btn" type="button" onClick={Next}>{page==totalpage?'FINISH':'NEXT'}</button>
+              <button id="nextButton" className="btn btn-default navbar-btn" type="button" onClick={Next}>{page===totalpage?'FINISH':'NEXT'}</button>
               <button id="previousButton" className="btn btn-default navbar-btn" type="button" onClick={Previous}>Previous</button>
               <button id="skipButton" className="btn btn-default navbar-btn" type="button" onClick={Skip}>Skip Tutorial</button>
           </div>

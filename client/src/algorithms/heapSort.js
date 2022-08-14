@@ -21,7 +21,7 @@ function heapify(rects,n,i){
         largest = r;
 
     // If largest is not root
-    if (largest != i) {
+    if (largest !== i) {
         let temp = rects[i];
         rects[i] = rects[largest];
         rects[largest] = temp;

@@ -93,7 +93,7 @@ export default function PreviousQue(props) {
                     setQuestion(res.data)
                 }
             }).catch((err) => {
-                setError("Something went Wrong, please try again.")
+                setError("Check your connection and try again.")
             })
 
     }, [success, props.successpost])

@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import Collapse from '@material-ui/core/Collapse';
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from '@material-ui/core/CardActions';
+// import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -13,7 +13,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CardHeader from '@material-ui/core/CardHeader';
 import "./style.css";
 import "./images/graph.png";
-import {ExpandMore} from "@material-ui/icons";
+// import {ExpandMore} from "@material-ui/icons";
 import {Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({

@@ -13,7 +13,7 @@ const Tutorial=() =>{
     const [Tutdata, setTutdata] = useState({})
     const totalpage = 5; // === Please write total tutorial page use for this algorithm
     const Next = () => {
-      if(page == totalpage) Skip();
+      if(page === totalpage) Skip();
       else if (page < totalpage) setPage(page + 1)
     }
     const Previous = () => {
@@ -44,21 +44,21 @@ const Tutorial=() =>{
                 setTutdata({
                     h3: 'Quick Sort',
                     p: 'Like Merge sort Quick sort is also a divide and conquer technique for sorting lists.It is the most commonly used algorithm for sorting and pretty optimal as well. It selects a pivot element from the list and partition the list into two sublists according to whether they are higher than pivot or not.After this the sublists are sorted recursively.It may give absurd results when elements in the list are repeated or equal,but most of the time it sorts them in nearly linear time',
-                    link: <Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/quick-sort/' target="_blank">See Algorithm</a></Button>,
+                    link: <Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/quick-sort/' rel="noreferrer" target="_blank">See Algorithm</a></Button>,
                 })
                 break;
             case 4:
                 setTutdata({
                     h3:'Merge Sort',
                     p:'Merge sort is referred to as one of the efficient sorting algorithms and is a type of divide and conquer algorithm.It divides the unsorted list into multiple sublists each with one element and merge them repeatedly to produce new sorted list and this process is continued until only one sublist is remained.The merging process nearly takes linear time so it is quite fast algorithm for sorting.',
-                    link:<Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/merge-sort/' target="_blank">See Algorithm</a></Button>,
+                    link:<Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/merge-sort/' rel="noreferrer" target="_blank">See Algorithm</a></Button>,
                 })
                 break;
                 case 5:
                     setTutdata({
                         h3:'Heap Sort',
                         p:'Heap sort is a comparison-based sorting technique based on Binary Heap data structure. It is similar to selection sort where we first find the minimum element and place the minimum element at the beginning. We repeat the same process for the remaining elements.',
-                        link:<Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/heap-sort/' target="_blank">See Algorithm</a></Button>,
+                        link:<Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/heap-sort/' rel="noreferrer" target="_blank">See Algorithm</a></Button>,
 
                 })
                 break;
@@ -79,7 +79,7 @@ const Tutorial=() =>{
                 <p>{Tutdata.p}</p>
                 <p><b>{Tutdata.link}</b></p>
                 <div id="tutorialCounter">{page}/{totalpage}</div>
-                <button id="nextButton" className="btn btn-default navbar-btn" type="button" onClick={Next}>{page==totalpage?'FINISH':'NEXT'}</button>
+                <button id="nextButton" className="btn btn-default navbar-btn" type="button" onClick={Next}>{page === totalpage?'FINISH':'NEXT'}</button>
                 <button id="previousButton" className="btn btn-default navbar-btn" type="button" onClick={Previous}>Previous</button>
                 <button id="skipButton" className="btn btn-default navbar-btn" type="button" onClick={Skip}>Skip Tutorial</button>
             </div>
@@ -95,9 +95,9 @@ class RecursiveSort extends Component {
         algo: 0
     }
 
-    constructor() {
-        super();
-    }
+    // constructor() {
+    //     super();
+    // }
 
     componentDidMount() {
         var rects = getInitialRects(this.state.count);
@@ -282,7 +282,7 @@ class RecursiveSort extends Component {
     handleMerge = async (steps) => {
         this.setState({isRunning1: true});
 
-        const {speed} = this.state;
+        // const {speed} = this.state;
 
         let prevRect = this.state.rects;
         for (let j = 0; j < this.state.count; j++) {

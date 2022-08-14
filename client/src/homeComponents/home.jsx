@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Greet from "./greet";
 import TypeWriterC from "./typewriter";
 import Cards from "./cards";

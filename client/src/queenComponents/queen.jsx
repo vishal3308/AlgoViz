@@ -10,7 +10,7 @@ const Tutorial = () => {
     const [Tutdata, setTutdata] = useState({})
     const totalpage = 4; // === Please write total tutorial page use for this algorithm
     const Next = () => {
-        if (page == totalpage) Skip();
+        if (page === totalpage) Skip();
         else if (page < totalpage) setPage(page + 1)
     }
     const Previous = () => {
@@ -48,7 +48,7 @@ const Tutorial = () => {
                 setTutdata({
                     h3: 'How Backtracking Algorithm solves the N Queen Problem?',
                     h6: " When we place a queen in a column, we check for clashes with already placed queens. In the current column, if we find a row for which there is no clash, we mark this row and column as part of the solution. If we do not find such a row due to clashes, then we backtrack and return false.",
-                    link: <Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/n-queen-problem-backtracking-3/' target="_blank">See Algorithm</a></Button>,
+                    link: <Button variant='contained' color='primary'><a href='https://www.geeksforgeeks.org/n-queen-problem-backtracking-3/' rel="noreferrer" target="_blank">See Algorithm</a></Button>,
 
                 })
                 break;
@@ -69,7 +69,7 @@ const Tutorial = () => {
                 <p>{Tutdata.p}</p>
                 <p><b>{Tutdata.link}</b></p>
                 <div id="tutorialCounter">{page}/{totalpage}</div>
-                <button id="nextButton" className="btn btn-default navbar-btn" type="button" onClick={Next}>{page == totalpage ? 'FINISH' : 'NEXT'}</button>
+                <button id="nextButton" className="btn btn-default navbar-btn" type="button" onClick={Next}>{page === totalpage ? 'FINISH' : 'NEXT'}</button>
                 <button id="previousButton" className="btn btn-default navbar-btn" type="button" onClick={Previous}>Previous</button>
                 <button id="skipButton" className="btn btn-default navbar-btn" type="button" onClick={Skip}>Skip Tutorial</button>
             </div>
@@ -84,9 +84,7 @@ class Queen extends Component {
         isRunning: false
     }
 
-    constructor(props) {
-        super(props);
-    }
+   
     componentDidMount() {
         const board = getBoard(this.state.number);
         // board[3][3].isPresent = true;
