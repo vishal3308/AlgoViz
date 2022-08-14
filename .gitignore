@@ -1,4 +1,5 @@
 server/node_modules
+server/.env
 server/Passport/keys.js
 client/node_modules
 Application/node_modules
