@@ -1,0 +1,22 @@
+.binarySearch{
+    margin: auto;
+    text-align: center
+}
+.binarySearch h3{
+    margin: 10px 0;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.array_input{
+    margin: 20px 0;
+}
+.array_input input[type=number] {
+    width: 25px;
+    cursor: default;
+}

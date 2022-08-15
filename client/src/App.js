@@ -13,7 +13,8 @@ import PathfindingVisualizer from './PathfindingVisualizer/PathfindingVisualizer
 import Sort from "./sortComponents/sort";
 import Queen from "./queenComponents/queen";
 import ConvexHull from "./convexHullComponents/convexHull";
-import BinarySearch from "./binarySearchComponent/binarySearch";
+// import BinarySearch from "./binarySearchComponent/binarySearch";
+import BinarySearch from './binarySearchComponent/BinarySearch';
 import RecursiveSort from "./recursiveSortComponents/recursiveSort";
 import { createContext } from 'react';
 export const Url = createContext();
